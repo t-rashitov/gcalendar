@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Pycharm
+.idea
+
+# PG volumes
+_CI/postgres
