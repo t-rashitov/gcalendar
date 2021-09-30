@@ -29,7 +29,9 @@ _Переменные окружения для подключения к БД �
 1. Установить docker и docker-compose
 
 из коневой директории (gcalendar) выполнить команды:
+
 2. `sudo docker-compose -f _CI/docker-compose.yml build`
+
 3. `sudo docker-compose -f _CI/docker-compose.yml up`
 
 **URL**s:
