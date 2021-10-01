@@ -37,11 +37,13 @@ class IndexView(TemplateView):
 
         events = [{
                 'event_id': event['id'],
-                'summary': event['summary'],
-                'start': datetime.strptime(event['start']['dateTime'], '%Y-%m-%dT%H:%M:%S%z'),
-                'end': datetime.strptime(event['end']['dateTime'], '%Y-%m-%dT%H:%M:%S%z'),
-                'event_type': event['eventType'],
-                'html_link': event['htmlLink']
+                'summary': event.get('summary') or event.get('description', ''),
+                'start': datetime.strptime(event['start']['dateTime'], '%Y-%m-%dT%H:%M:%S%z')
+                if event['start'].get('dateTime') else datetime.strptime(event['start']['date'] + 'Z', '%Y-%m-%d%z'),
+                'end': datetime.strptime(event['end']['dateTime'], '%Y-%m-%dT%H:%M:%S%z')
+                if event['end'].get('dateTime') else datetime.strptime(event['end']['date'] + 'Z', '%Y-%m-%d%z'),
+                'event_type': event.get('eventType', ''),
+                'html_link': event.get('htmlLink', '')
             } for event in events_result.get('items', [])]
 
         Event.synchronize_with_remote(events, request.user)
