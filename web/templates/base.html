@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Calendar</title>
+        <link
+                rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+                integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+                crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="jumbotron">
+            {% block login_header %}
+            {% endblock %}
+        </div>
+
+        <div class="container-fluid mh-100 overflow-auto">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <script>
+            {% block scripts %}
+            {% endblock %}
+        </script>
+    </body>
+</html>

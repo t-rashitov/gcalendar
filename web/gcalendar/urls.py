@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
+from django.views.generic import TemplateView, RedirectView
 
-from gcalendar.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('logout/', LogoutView.as_view(template_name='index.html'), name='logout'),
+    path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='base.html'), name='logout'),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('', IndexView.as_view(), name='index')
+    path('events/', include('event.urls', namespace='events')),
+    path('', RedirectView.as_view(pattern_name='event:event-list'), name='index')
 ] + staticfiles_urlpatterns()
