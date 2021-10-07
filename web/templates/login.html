@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block login_header %}
+    <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+        Авторизоваться с Google
+    </a>
+{% endblock %}
